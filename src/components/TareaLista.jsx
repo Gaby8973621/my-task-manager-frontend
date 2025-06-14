@@ -7,12 +7,15 @@ import '../styles/TareaLista.css';
 function TareaLista() {
   const [tareas, setTareas] = useState([]);
   const [error, setError] = useState('');
+  const [mensajeAdmin, setMensajeAdmin] = useState('');
 
   useEffect(() => {
     const cargarTareas = async () => {
       try {
         const res = await api.get('/tareas');
-        setTareas(res.data.data || []);
+        // ✅ Asegura que sea un arreglo
+        const data = res.data.data || res.data;
+        setTareas(Array.isArray(data) ? data : []);
         setError('');
       } catch (err) {
         if (err.response?.status === 401) {
@@ -22,15 +25,26 @@ function TareaLista() {
         } else {
           setError('Error al cargar tareas');
         }
-        console.error(err);
+        console.error('Error en cargarTareas:', err);
+      }
+    };
+
+    const verificarAdmin = async () => {
+      try {
+        const res = await api.get('/admin-dashboard');
+        setMensajeAdmin(res.data.message);
+      } catch {
+        setMensajeAdmin('');
       }
     };
 
     cargarTareas();
+    verificarAdmin();
   }, []);
 
   const agregarTarea = (nueva) => {
-    setTareas([nueva, ...tareas]);
+    if (!nueva || !nueva.id) return;
+    setTareas((prev) => [nueva, ...prev]);
   };
 
   const actualizarTarea = (actualizada) => {
@@ -45,6 +59,9 @@ function TareaLista() {
 
   return (
     <div className="task-list-container">
+      {/* ✅ Mensaje visible solo si hay permisos de admin */}
+      {mensajeAdmin && <div className="admin-message">{mensajeAdmin}</div>}
+
       <TareaForm onTareaAgregada={agregarTarea} />
 
       {error && <p className="task-error">{error}</p>}
@@ -52,17 +69,18 @@ function TareaLista() {
       {tareas.length === 0 ? (
         <p className="task-empty">No hay tareas.</p>
       ) : (
-        <ul className="task-list">
-          {tareas.map((tarea) => (
-            <li key={tarea.id}>
+        <div className="task-list">
+          {tareas
+            .filter((t) => t && t.id) // Validar tareas válidas
+            .map((tarea) => (
               <TareaItem
+                key={tarea.id}
                 tarea={tarea}
                 onActualizar={actualizarTarea}
                 onEliminar={eliminarTarea}
               />
-            </li>
-          ))}
-        </ul>
+            ))}
+        </div>
       )}
     </div>
   );

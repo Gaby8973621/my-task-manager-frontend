@@ -13,16 +13,22 @@ function Dashboard() {
 
     if (!token) {
       navigate('/login');
-    } else {
-      try {
-        const payload = JSON.parse(atob(token.split('.')[1])); // decodifica el token
-        setUserEmail(payload.email || 'Usuario autenticado');
-        const roles = payload.role || [];
-        setIsAdmin(roles.includes('Admin') || roles.includes('Super Admin'));
-      } catch (error) {
-        console.error('Error al decodificar el token', error);
-        navigate('/login');
-      }
+      return;
+    }
+
+    try {
+      const payloadBase64 = token.split('.')[1];
+      const payload = JSON.parse(atob(payloadBase64));
+
+      setUserEmail(payload.email || 'Usuario');
+
+      const roles = payload.role || [];
+      setIsAdmin(roles.includes('Admin') || roles.includes('Super Admin'));
+
+    } catch (error) {
+      console.error('Token inválido o corrupto', error);
+      localStorage.removeItem('token');
+      navigate('/login');
     }
   }, [navigate]);
 
@@ -34,9 +40,15 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       <div className="dashboard-box">
-        <h1 className="dashboard-title">Bienvenido a My Task Manager</h1>
-        {isAdmin && <p className="admin-banner">Bienvenido Admin 👑</p>}
-        <p className="dashboard-user">{userEmail}</p>
+        <h1 className="dashboard-title">Bienvenido a Mi Gestor</h1>
+
+        {isAdmin && (
+          <div className="admin-banner">
+            <p> Bienvenido Admin</p>
+          </div>
+        )}
+
+        <p className="dashboard-user">Sesión activa: {userEmail}</p>
 
         <TareaLista />
 
