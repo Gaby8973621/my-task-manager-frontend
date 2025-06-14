@@ -1,0 +1,77 @@
+/* Fondo general */
+.login-page {
+  min-height: 100vh;
+  background-color: #30006f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Contenedor del formulario */
+.login-form {
+  background-color: rgb(246, 236, 236);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+.login-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1f2937;
+  text-align: center;
+}
+
+/* Input */
+.login-input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.95rem;
+}
+
+/* Botón */
+.login-button {
+  width: 100%;
+  background-color: #6c31b5;
+  color: white;
+  padding: 0.5rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #551c9a;
+}
+
+/* Error */
+.login-error {
+  color: #dc2626;
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+}
+
+/* Link registro */
+.login-register {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+.login-register a {
+  color: #392e82;
+  text-decoration: none;
+}
+
+.login-register a:hover {
+  text-decoration: underline;
+}

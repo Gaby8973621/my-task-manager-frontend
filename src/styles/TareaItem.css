@@ -1,0 +1,34 @@
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.task-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task-completed {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.task-delete {
+  background: none;
+  border: none;
+  color: #dc2626;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.task-delete:hover {
+  text-decoration: underline;
+}
