@@ -1,0 +1,76 @@
+.register-page {
+  min-height: 100vh;
+  background-color: #360464;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-form {
+  background-color: rgb(242, 232, 232);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(160, 47, 47, 0.1);
+}
+
+.register-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #090111;
+  text-align: center;
+}
+
+.register-input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #f9fbfe;
+  border-radius: 0.375rem;
+  font-size: 0.95rem;
+}
+
+.register-button {
+  width: 100%;
+  background-color: #671f9acc;
+  color: white;
+  padding: 0.5rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-button:hover {
+  background-color: #391172;
+}
+
+.register-error {
+  color: #2f0606;
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.register-success {
+  color: #341964;
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.register-login {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+.register-login a {
+  color: #3d087b;
+  text-decoration: none;
+}
+
+.register-login a:hover {
+  text-decoration: underline;
+}
