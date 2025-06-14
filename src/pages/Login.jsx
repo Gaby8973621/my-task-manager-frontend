@@ -15,19 +15,23 @@ function Login() {
     try {
       const res = await api.post('/auth/login', { email, password });
 
-      localStorage.setItem('token', res.data.token); // ✅ guarda token
+      // ✅ Guarda el token correctamente (para autenticación en futuras peticiones)
+      localStorage.setItem('token', res.data.access_token);
 
-      navigate('/dashboard'); // ✅ redirige
+      // ✅ Guarda el rol si viene como arreglo
+      if (Array.isArray(res.data.role)) {
+        localStorage.setItem('rol', res.data.role[0]);
+      }
+
+      // ✅ Redirige al dashboard
+      navigate('/dashboard');
     } catch (err) {
       console.error('Login error:', err);
-
-      if (err.response?.data?.message) {
-        setError(err.response.data.message);
-      } else if (err.response?.data?.errors) {
-        setError(err.response.data.errors);
-      } else {
-        setError('Error de conexión');
-      }
+      const msg =
+        err.response?.data?.errors ||
+        err.response?.data?.message ||
+        'Credenciales inválidas';
+      setError(msg);
     }
   };
 
@@ -36,6 +40,7 @@ function Login() {
       <form onSubmit={handleSubmit} className="login-form">
         <h2 className="login-title">Iniciar Sesión</h2>
         {error && <p className="login-error">{error}</p>}
+
         <input
           type="email"
           placeholder="Correo"
@@ -44,6 +49,7 @@ function Login() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+
         <input
           type="password"
           placeholder="Contraseña"
@@ -52,9 +58,11 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+
         <button type="submit" className="login-button">
           Iniciar sesión
         </button>
+
         <p className="login-register">
           ¿No tienes cuenta? <a href="/register">Regístrate</a>
         </p>

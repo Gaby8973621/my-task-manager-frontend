@@ -55,3 +55,29 @@
   margin-bottom: 15px;
   font-weight: bold;
 }
+.admin-banner {
+  background-color: #e0c8f5;
+  color: #5f0a87;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 10px rgba(95, 10, 135, 0.2);
+}
+
+.logout-button {
+  margin-top: 2rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #5f0a87;
+  color: white;
+  border: none;
+  border-radius: 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #430e65;
+}

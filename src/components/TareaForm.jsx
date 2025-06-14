@@ -17,12 +17,15 @@ function TareaForm({ onTareaAgregada }) {
         completada: false,
       });
 
-      onTareaAgregada(res.data); // Actualiza la lista en el componente padre
+      // ✅ Verifica si la respuesta trae el objeto plano o con `data`
+      const nuevaTarea = res.data.data || res.data;
+
+      onTareaAgregada(nuevaTarea); // Actualiza la lista de tareas
       setTitulo('');
       setDescripcion('');
       setError('');
     } catch (err) {
-      console.error(err);
+      console.error('Error al crear tarea:', err);
       const msg =
         err.response?.data?.message ||
         err.response?.data?.errors?.titulo?.[0] ||

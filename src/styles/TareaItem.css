@@ -1,34 +1,109 @@
-.task-item {
+.tarea-item {
+  background-color: #f9f9f9;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem;
-  background-color: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
-  margin-bottom: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  gap: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.task-info {
+.tarea-contenido {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
+  flex-grow: 1;
 }
 
-.task-completed {
+.tarea-titulo {
+  font-size: 1rem;
+  color: #333;
+}
+
+.tarea-titulo.completada {
   text-decoration: line-through;
-  color: #9ca3af;
+  color: green;
 }
 
-.task-delete {
-  background: none;
-  border: none;
-  color: #dc2626;
-  font-size: 0.875rem;
+.checkbox-container {
+  position: relative;
+  padding-left: 28px;
   cursor: pointer;
 }
 
-.task-delete:hover {
-  text-decoration: underline;
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #ccc;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #28a745;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-container .checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.botones-tarea {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.btn.editar {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.btn.eliminar {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn.guardar {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn.cancelar {
+  background-color: #6c757d;
+  color: white;
 }
