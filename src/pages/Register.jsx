@@ -4,7 +4,7 @@ import api from '../api/axios';
 import '../styles/Register.css';
 
 function Register() {
-  const [name, setName] = useState(''); // ✅ Estado para el nombre
+  const [name, setName] = useState(''); 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -21,7 +21,7 @@ function Register() {
 
     try {
       const res = await api.post('/auth/register', {
-        name, // ✅ Se envía al backend
+        name, 
         email,
         password,
         password_confirmation: confirmPassword,
