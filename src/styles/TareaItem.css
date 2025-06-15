@@ -1,109 +1,75 @@
 .tarea-item {
-  background-color: #f9f9f9;
-  border-radius: 0.75rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.tarea-contenido {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-grow: 1;
-}
-
-.tarea-titulo {
-  font-size: 1rem;
-  color: #333;
-}
-
-.tarea-titulo.completada {
-  text-decoration: line-through;
-  color: green;
-}
-
-.checkbox-container {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  padding: 12px;
+  background-color: #fff;
   position: relative;
-  padding-left: 28px;
-  cursor: pointer;
 }
 
-.checkbox-container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
+.tarea-edicion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 20px;
-  width: 20px;
-  background-color: #ccc;
+.tarea-input,
+.tarea-textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #62189e;
   border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-
-.checkbox-container input:checked ~ .checkmark {
-  background-color: #28a745;
-}
-
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-.checkbox-container input:checked ~ .checkmark:after {
-  display: block;
-}
-
-.checkbox-container .checkmark:after {
-  left: 7px;
-  top: 3px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
 }
 
 .botones-tarea {
   display: flex;
-  gap: 0.5rem;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .btn {
-  padding: 0.4rem 0.8rem;
+  padding: 6px 12px;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
-  transition: background-color 0.2s ease;
 }
 
 .btn.editar {
-  background-color: #17a2b8;
+  background-color: #6b15a0;
   color: white;
 }
 
 .btn.eliminar {
-  background-color: #dc3545;
+  background-color: #000000;
   color: white;
 }
 
 .btn.guardar {
-  background-color: #28a745;
+  background-color: #591282;
   color: white;
 }
 
 .btn.cancelar {
-  background-color: #6c757d;
+  background-color: #180528;
   color: white;
+}
+
+.tarea-contenido {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.tarea-textos {
+  flex: 1;
+  min-width: 200px;
+}
+
+.tarea-descripcion {
+  margin-top: 4px;
+  font-size: 0.95rem;
+  color: #555;
 }

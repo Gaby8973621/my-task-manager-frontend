@@ -8,7 +8,7 @@ function TareaForm({ onTareaAgregada }) {
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
 
     try {
       const res = await api.post('/tareas', {
@@ -17,15 +17,16 @@ function TareaForm({ onTareaAgregada }) {
         completada: false,
       });
 
-      // ✅ Verifica si la respuesta trae el objeto plano o con `data`
       const nuevaTarea = res.data.data || res.data;
 
-      onTareaAgregada(nuevaTarea); // Actualiza la lista de tareas
+      //Notifica se agregó una nueva tarea
+      onTareaAgregada(nuevaTarea); 
       setTitulo('');
       setDescripcion('');
       setError('');
     } catch (err) {
       console.error('Error al crear tarea:', err);
+      //mensaje del error
       const msg =
         err.response?.data?.message ||
         err.response?.data?.errors?.titulo?.[0] ||
