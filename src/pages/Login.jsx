@@ -10,20 +10,19 @@ function Login() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
+    e.preventDefault(); 
     try {
       const res = await api.post('/auth/login', { email, password });
 
-      // ✅ Guarda el token correctamente (para autenticación en futuras peticiones)
+      //Guarda el token en localStorage 
       localStorage.setItem('token', res.data.access_token);
 
-      // ✅ Guarda el rol si viene como arreglo
+      //Guarda el primer rol si es un arreglo
       if (Array.isArray(res.data.role)) {
         localStorage.setItem('rol', res.data.role[0]);
       }
 
-      // ✅ Redirige al dashboard
+      // Redirige al dashboard
       navigate('/dashboard');
     } catch (err) {
       console.error('Login error:', err);
@@ -31,7 +30,8 @@ function Login() {
         err.response?.data?.errors ||
         err.response?.data?.message ||
         'Credenciales inválidas';
-      setError(msg);
+        //mensaje de error al usuario
+      setError(msg); 
     }
   };
 

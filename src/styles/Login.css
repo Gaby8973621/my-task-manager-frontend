@@ -1,7 +1,7 @@
 /* Fondo general */
 .login-page {
   min-height: 100vh;
-  background-color: #30006f;
+  background: linear-gradient(135deg, #631aab, #12051f);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +22,7 @@
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #1f2937;
+  color: #2f0554;
   text-align: center;
 }
 
@@ -55,7 +55,7 @@
 
 /* Error */
 .login-error {
-  color: #dc2626;
+  color: #670dc7;
   margin-bottom: 0.75rem;
   font-size: 0.875rem;
 }

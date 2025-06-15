@@ -5,20 +5,21 @@ import TareaItem from './TareaItem';
 import '../styles/TareaLista.css';
 
 function TareaLista() {
-  const [tareas, setTareas] = useState([]);
-  const [error, setError] = useState('');
-  const [mensajeAdmin, setMensajeAdmin] = useState('');
+  //Lista de tareas
+  const [tareas, setTareas] = useState([]); 
+  // mostrar errores
+  const [error, setError] = useState('');   
 
   useEffect(() => {
     const cargarTareas = async () => {
       try {
         const res = await api.get('/tareas');
-        // ✅ Asegura que sea un arreglo
         const data = res.data.data || res.data;
-        setTareas(Array.isArray(data) ? data : []);
+        setTareas(Array.isArray(data) ? data : []); 
         setError('');
       } catch (err) {
         if (err.response?.status === 401) {
+          //Maneja token expirado o inválido
           setError('Tu sesión ha expirado. Por favor inicia sesión nuevamente.');
           localStorage.removeItem('token');
           window.location.href = '/login';
@@ -29,49 +30,44 @@ function TareaLista() {
       }
     };
 
-    const verificarAdmin = async () => {
-      try {
-        const res = await api.get('/admin-dashboard');
-        setMensajeAdmin(res.data.message);
-      } catch {
-        setMensajeAdmin('');
-      }
-    };
-
-    cargarTareas();
-    verificarAdmin();
+    cargarTareas(); 
   }, []);
 
   const agregarTarea = (nueva) => {
-    if (!nueva || !nueva.id) return;
-    setTareas((prev) => [nueva, ...prev]);
+    //Verifica que la tarea sea válida
+    if (!nueva || !nueva.id) return; 
+    //Agrega la nueva tarea al inicio
+    setTareas((prev) => [nueva, ...prev]); 
   };
 
   const actualizarTarea = (actualizada) => {
+    //Reemplaza la tarea con el mismo ID
     setTareas((prev) =>
       prev.map((t) => (t.id === actualizada.id ? actualizada : t))
     );
   };
 
   const eliminarTarea = (id) => {
+    //Elimina la tarea 
     setTareas((prev) => prev.filter((t) => t.id !== id));
   };
 
   return (
     <div className="task-list-container">
-      {/* ✅ Mensaje visible solo si hay permisos de admin */}
-      {mensajeAdmin && <div className="admin-message">{mensajeAdmin}</div>}
-
+      {/*Formulario para agregar tareas */}
       <TareaForm onTareaAgregada={agregarTarea} />
 
       {error && <p className="task-error">{error}</p>}
 
       {tareas.length === 0 ? (
+        //Mensaje cuando no hay tareas
         <p className="task-empty">No hay tareas.</p>
       ) : (
         <div className="task-list">
+          {/*muestra cada tarea usando el componente TareaItem */}
           {tareas
-            .filter((t) => t && t.id) // Validar tareas válidas
+          //Filtra tareas que no estan validadas
+            .filter((t) => t && t.id) 
             .map((tarea) => (
               <TareaItem
                 key={tarea.id}
